@@ -7,29 +7,19 @@ Bot de Discord que utiliza la API de Google Gemini para responder mensajes.
 - ✅ Usa **gemini-2.0-flash-lite**, el modelo más económico de Gemini
 - ✅ Respuestas inteligentes generadas por IA
 - ✅ Manejo automático de mensajes largos
-- ✅ Código modular y bien organizado
+- ✅ Todo el código en un solo archivo (`bot.js`)
 - ✅ Fácil configuración
 
 ## Estructura del Proyecto
 
 ```
 /workspace
-├── config/
-│   └── config.js          # Configuración centralizada
-├── src/
-│   ├── bot.js             # Punto de entrada principal
-│   ├── geminiService.js   # Servicio de integración con Gemini API
-│   └── utils.js           # Funciones utilitarias
+├── bot.js                 # Archivo principal del bot (todo el código)
+├── .env                   # Variables de entorno (configuración personal)
 ├── .env.example           # Ejemplo de variables de entorno
 ├── package.json
 └── README.md
 ```
-
-## Requisitos
-
-- Node.js 16.x o superior
-- Token de Discord Bot
-- API Key de Google Gemini
 
 ## Instalación
 
