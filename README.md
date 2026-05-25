@@ -1,100 +1,87 @@
-# Bot de Discord con Ollama (Node.js)
+# Discord Gemini Bot
 
-Este bot de Discord se conecta a la API de Ollama y utiliza el modelo `gemma:31b` para procesar mensajes y responder automáticamente.
+Bot de Discord que utiliza la API de Google Gemini para responder mensajes.
 
-## Requisitos previos
+## Características
 
-1. **Node.js** instalado (versión 16 o superior)
-2. **Ollama** instalado y ejecutándose localmente
-3. El modelo `gemma:31b` descargado en Ollama
-4. Un token de bot de Discord
+- ✅ Usa **gemini-2.0-flash-lite**, el modelo más económico de Gemini
+- ✅ Respuestas inteligentes generadas por IA
+- ✅ Manejo automático de mensajes largos
+- ✅ Código modular y bien organizado
+- ✅ Fácil configuración
+
+## Estructura del Proyecto
+
+```
+/workspace
+├── config/
+│   └── config.js          # Configuración centralizada
+├── src/
+│   ├── bot.js             # Punto de entrada principal
+│   ├── geminiService.js   # Servicio de integración con Gemini API
+│   └── utils.js           # Funciones utilitarias
+├── .env.example           # Ejemplo de variables de entorno
+├── package.json
+└── README.md
+```
+
+## Requisitos
+
+- Node.js 16.x o superior
+- Token de Discord Bot
+- API Key de Google Gemini
 
 ## Instalación
 
-### 1. Instalar dependencias de Node.js
+1. Clona el repositorio e instala las dependencias:
 
 ```bash
 npm install
 ```
 
-### 2. Configurar Ollama
-
-Asegúrate de tener Ollama instalado y el modelo `gemma:31b` descargado:
-
-```bash
-ollama pull gemma:31b
-```
-
-Inicia Ollama si no está corriendo:
-
-```bash
-ollama serve
-```
-
-### 3. Configurar el bot de Discord
-
-1. Ve al [Discord Developer Portal](https://discord.com/developers/applications)
-2. Crea una nueva aplicación
-3. Ve a la sección "Bot" y crea un bot
-4. Copia el token del bot
-5. En la sección "OAuth2" > "URL Generator", selecciona los scopes `bot` y los permisos necesarios (al menos "Send Messages" y "Read Message History")
-6. Usa la URL generada para invitar al bot a tu servidor
-
-### 4. Configurar variables de entorno
-
-Crea un archivo `.env` en la raíz del proyecto:
+2. Copia el archivo de ejemplo y configura tus credenciales:
 
 ```bash
 cp .env.example .env
 ```
 
-Edita el archivo `.env` y agrega tu token de Discord:
+3. Edita `.env` y agrega tu token de Discord y API Key de Gemini:
 
-```
+```env
 DISCORD_TOKEN=tu_token_de_discord_aqui
-OLLAMA_API_URL=http://localhost:11434/api/generate
-MODEL_NAME=gemma:31b
+GEMINI_API_KEY=tu_api_key_de_gemini_aqui
+GEMINI_MODEL=gemini-2.0-flash-lite
 ```
 
-## Ejecución
+## Uso
 
-Para iniciar el bot:
+### Iniciar el bot:
 
 ```bash
 npm start
 ```
 
-o
+### Modo desarrollo (con auto-reload):
 
 ```bash
-node bot.js
+npm run dev
 ```
 
-## Funcionamiento
+## Modelos de Gemini Disponibles
 
-- El bot escucha todos los mensajes en los canales de texto donde tiene permiso
-- Ignora sus propios mensajes para evitar bucles infinitos
-- Envía cada mensaje recibido a la API de Ollama
-- Procesa la respuesta y la envía de vuelta al canal
-- Divide automáticamente las respuestas largas en múltiples mensajes (límite de Discord: 2000 caracteres)
-- Muestra el indicador de "escribiendo..." mientras procesa
+| Modelo | Descripción | Costo |
+|--------|-------------|-------|
+| `gemini-2.0-flash-lite` | **Más barato** - Recomendado para este bot | $ |
+| `gemini-2.0-flash` | Equilibrio entre velocidad y calidad | $$ |
+| `gemini-1.5-flash` | Alternativa económica | $ |
+| `gemini-1.5-pro` | Mayor capacidad de razonamiento | $$$ |
 
-## Personalización
+Para cambiar de modelo, modifica la variable `GEMINI_MODEL` en tu archivo `.env`.
 
-Puedes cambiar el modelo editando la variable `MODEL_NAME` en el archivo `.env`:
+## Comandos
 
-```
-MODEL_NAME=otro_modelo
-```
+El bot responde a **todos los mensajes** directamente. No requiere prefijo.
 
-También puedes cambiar la URL de Ollama si está en otro servidor:
+## Licencia
 
-```
-OLLAMA_API_URL=http://tu-servidor:11434/api/generate
-```
-
-## Notas
-
-- Asegúrate de que Ollama esté accesible desde la máquina donde corre el bot
-- El modelo `gemma:31b` requiere recursos significativos de GPU/CPU
-- Las respuestas pueden tardar dependiendo del hardware y la longitud del mensaje
+ISC
