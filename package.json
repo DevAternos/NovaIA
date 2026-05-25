@@ -2,10 +2,10 @@
   "name": "discord-gemini-bot",
   "version": "1.0.0",
   "description": "Bot de Discord que usa Google Gemini (gemini-2.0-flash-lite - el modelo más barato)",
-  "main": "src/bot.js",
+  "main": "bot.js",
   "scripts": {
-    "start": "node src/bot.js",
-    "dev": "nodemon src/bot.js",
+    "start": "node bot.js",
+    "dev": "nodemon bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
